@@ -11,7 +11,9 @@ Use cases for hackathon
     Sample Input: What's going on with unemployment right now?
     Sample output: Strange Jobless Claims
 2b. Provide an article and ask for more based on similar topics
-    Sample input: I just read this article, {article content about inflation}, what do you have that covers something similar?
+    Sample input: I just read this article, {The last batch of inflation news that Federal Reserve officials will see before their policy meeting next week is in, and none of it is very good.
+
+In the aggregate, Commerce Department indexes that the Fed relies on for inflation signals showed prices continuing to climb at a rate still considerably higher than the central bank’s 2% annual goal, according to separate reports this week.}, what do you have that covers something similar?
     Sample output: Key Fed Inflation Measure
 3. Provide a list of topics discussed in a set of articles I say I read
     Sample Input: I read these articles {article list}, what are the main topics discussed in them?
