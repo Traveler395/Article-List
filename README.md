@@ -15,6 +15,7 @@ Use cases for hackathon
 
 In the aggregate, Commerce Department indexes that the Fed relies on for inflation signals showed prices continuing to climb at a rate still considerably higher than the central bank’s 2% annual goal, according to separate reports this week.}, what do you have that covers something similar?
     Sample output: Key Fed Inflation Measure
-3. Provide a list of topics discussed in a set of articles I say I read
+3a. Provide a list of topics discussed in a set of articles I say I read
     Sample Input: I read these articles {article list}, what are the main topics discussed in them?
     Sample output: Inflation, Unemployment, the US Economy, etc.
+3b. Using the results of 3a, count up the number of times each topic has appeared in our list of articles
