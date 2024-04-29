@@ -1,0 +1,66 @@
+https://finance.yahoo.com/personal-finance/mortgage-principal-213811390.html
+
+Yahoo Finance
+Personal Finance
+What is mortgage principal, and how do I pay it off?
+
+Author
+Hal Bundrick
+
+Mortgage principal is one of those odd little terms you'll stumble across when getting a loan to buy a home. It is simply the balance you owe from the money you borrowed by taking out a mortgage. However, it's important to know how it works and the ways it can impact your monthly payment.
+
+Let's see how the process works.
+
+Learn more: How to get a mortgage
+
+
+What is mortgage principal?
+In any loan, including a mortgage, the principal is the money you originally borrowed minus any payments to the balance. For example, if a home sells for $300,000 and you make a down payment of 5% ($15,000), the down payment is deducted from the home's price, leaving a balance of $285,000. That $285,000 is the starting principal balance.
+
+$300,000 (sales price) - $15,000 (down payment) = $285,000 (principal)
+
+How to pay off your mortgage principal
+As you make monthly mortgage payments on the loan, your principal balance is reduced. However, it's not reduced by the total amount of your payment. That's because your monthly home loan payment contains mortgage interest the lender charges.
+
+Continuing the example from above:
+
+With $285,000 as your beginning principal balance, with a 30-year mortgage and a fixed interest rate of 7%, your first payment might reduce the balance as shown:
+
+Payment: $1,896
+
+Interest: $1,662.50
+
+Principal: $233.61
+
+This excludes other charges that may be included in the total amount of your payment, such as private mortgage insurance, homeowners insurance, and property taxes.
+
+With each monthly payment, the amount paid toward interest is slightly less, while the amount applied to reduce the principal — the balance you owe — is incrementally higher.
+
+To see the difference after 10 years of payments, we will use the same loan scenario as above but show your first payment in the first month of the 11th year of your loan:
+
+Payment: $1,896
+
+Interest: $1,395.61
+
+Principal: $500.50
+
+As you can see, the monthly payment toward the principal and interest is the same as it was on day one. The amount going to the loan principal has more than doubled but is still significantly less than the interest being paid.
+
+Dig deeper: How much house can I afford?
+
+Mortgage principal FAQs
+How much of my mortgage payment goes to principal?
+In general, more and more of your mortgage payment goes toward the principal as the months go on. For an exact amount, use a mortgage calculator to run the numbers to see just how much of your payment will be going to the principal. You can look at several scenarios, such as how many months you are willing to finance the loan (called the loan term), the possible interest rates you might qualify for, and different down payment amounts.
+
+Is it better to pay principal or interest?
+Your payment will require you to pay both mortgage interest and loan principal, as well as expenses such as mortgage insurance, homeowners insurance, and property taxes. However, it can be a good idea to put more toward the principal and pay down your mortgage faster, if you are financially able.
+
+Should I pay extra principal on my mortgage?
+Paying down your principal reduces the amount of interest you will pay over the life of the loan. Interest is the cost of borrowing money. Lenders charge you interest to make money. The smaller your principal balance, the less interest they can charge. Making extra principal payments reduces the loan balance, and you’ll pay less interest. A bonus: Extra payments reduce debt — and lower debt can improve your credit score.
+
+How do I calculate my mortgage principal?
+To calculate your mortgage principal when buying a house, subtract the sales price by your down payment. If you buy a $400,000 house and make a $20,000 down payment, your principal is $380,000.
+
+To determine the principal remaining on your loan, just check your monthly statement and look for "principal balance."
+
+Your monthly mortgage statement (or online access to your loan servicer) will also tell you how much of your current and most recent payments went to the principal balance.
