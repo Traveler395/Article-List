@@ -1,8 +1,10 @@
 from flask import Flask, Response
+from flask_cors import CORS
 import json
 import openai_wrapper
 
 app = Flask(__name__)
+CORS(app)
 ai = openai_wrapper.OpenAIWrapper()
 
 sample_article = '''
