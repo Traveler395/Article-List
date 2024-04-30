@@ -18,7 +18,7 @@ Activate personal venv
 
 Install dependencies into personal venv
 
-   pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Run the program
 
