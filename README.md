@@ -3,15 +3,25 @@ Listing of articles for hackathon
 
 # Instructions for running backend service
 Using git bash:
+
 Activate the built-in venv
+
     source /c/shared/venv312/Scripts/activate
+
 Create personal venv
+
     python -m venv ~/Documents/hackathon-venv
+
 Activate personal venv
+
     source ~/Documents/hackathon-venv/Scripts/activate
+
 Install dependencies into personal venv
+
    pip install -r requirements.txt
+
 Run the program
+
     python summarize-articles/app.py
 
 
