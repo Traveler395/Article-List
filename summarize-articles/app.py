@@ -50,27 +50,22 @@ def hello():
 @app.route('/summary', methods=['POST'])
 def summary():
     data = ai.summarize_article(sample_article)
-    return Response(json.dumps(data), mimetype='application/json')
+    return Response(data, mimetype='application/json')
 
 @app.route('/recommendations_article', methods=['POST'])
 def recommendations_article():
     data = ai.recommendations_from_article(sample_article)
-    return Response(json.dumps(data), mimetype='application/json')
+    return Response(data, mimetype='application/json')
 
 @app.route('/recommendations_topic', methods=['POST'])
 def recommendations_topic():
     data = ai.recommendations_from_topic(sample_topic)
-    return Response(json.dumps(data), mimetype='application/json')
+    return Response(data, mimetype='application/json')
 
 @app.route('/topics', methods=['POST'])
 def topics():
     data = ai.topics_from_article(sample_article)
-    return Response(json.dumps(data), mimetype='application/json')
+    return Response(data, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()
-
-
-
-# python -m venv ~/Documents/hackathon-venv
-# source ~/Documents/hackathon-venv/Scripts/activate

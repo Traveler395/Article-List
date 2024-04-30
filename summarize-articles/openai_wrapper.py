@@ -20,6 +20,8 @@ class OpenAIWrapper:
         directory = '../Articles'
         files = os.listdir(directory)
         for file in files:
+            if file.startswith('SAMPLE'):
+                continue
             with open(os.path.join(directory, file), 'r', encoding='UTF-8') as f:
                 content = f.read()
                 self.article_library.append(content)
@@ -28,11 +30,16 @@ class OpenAIWrapper:
         if self.should_log:
             print(msg)
 
-    def openai_call(self, input_string, model="gpt-3.5-turbo"):
+    def openai_call(self, system_message, input_string, model="gpt-3.5-turbo"):
         self.log('calling openai')
         chat_completion = self.client.chat.completions.create(
             model=model,
+            response_format={ "type": "json_object" },
             messages=[
+                {
+                    "role": "system",
+                    "content": system_message
+                },
                 {
                     "role": "user",
                     "content": input_string
@@ -43,17 +50,21 @@ class OpenAIWrapper:
         return chat_completion.choices[0].message.content
     
     def summarize_article(self, article_text):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': 'summary paragraph'}"
         instruction = f'I read this article, what are the main topics discussed in it? {article_text}'
-        return self.openai_call(instruction)
+        return self.openai_call(sys_msg, instruction)
 
     def recommendations_from_article(self, article_text, num_articles=3):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': [{'title': 'article 1 title', 'url': 'article 1 url'}, {'title': 'article 2 title', 'url': 'article 2 url'}, ...]}"
         instruction = f'Please list the top {num_articles} articles from the article library related to the following text: {article_text}. Article library: {self.article_library}'
-        return self.openai_call(instruction)
+        return self.openai_call(sys_msg, instruction)
 
     def recommendations_from_topic(self, topic):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': [{'title': 'article 1 title', 'url': 'article 1 url'}, {'title': 'article 2 title', 'url': 'article 2 url'}, ...]}"
         instruction = f'Which of the following articles from the article library should I read to understand more about {topic}? Article library: {self.article_library}'
-        return self.openai_call(instruction)
+        return self.openai_call(sys_msg, instruction)
 
     def topics_from_article(self, article_text):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': ['tag 1', 'tag 2', ...]}"
         instruction = f'I read this article, how would you tag the main topics discussed in it? Provide a few tags. {article_text}'
-        return self.openai_call(instruction)
+        return self.openai_call(sys_msg, instruction)
