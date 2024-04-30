@@ -1,43 +1,11 @@
-#git bash: source /c/shared/venv312/Scripts/activate
-
+from flask import Flask, Response
 import json
-from openai import OpenAI
-import os
+import openai_wrapper
 
-#change dir to this script's dir
-script_dir = os.path.dirname(os.path.abspath(__file__))
-os.chdir(script_dir)
+app = Flask(__name__)
+ai = openai_wrapper.OpenAIWrapper()
 
-# get api key from shared file for team_4
-api_keys_file = r"C:\shared\content\config\api-keys\hackathon_openai_keys.json"
-openai_key = json.load(open(api_keys_file))['team_4']
-# print(openai_key)
-
-# initialize openAI client
-client = OpenAI(api_key=openai_key)
-
-# read all articles from folder and add them to a list
-article_texts = []
-directory = '../Articles'
-files = os.listdir(directory)
-for file in files:
-    with open(os.path.join(directory, file), 'r', encoding='UTF-8') as f:
-        content = f.read()
-        article_texts.append(content)
-
-        
-# print article contents (debugging)
-# for index, text in enumerate(article_texts):
-#     print('===================')
-#     print(f'Article content #{index}:\n\n', text)
-#     print('===================')
-# print('Articles content list:\n\n', article_texts)
-
-#This is the string to be used as input for OpenAI API call
-# instruction can be user input from UI input box
-# article_texts is the list of full texts of each article
-
-user_article_text = '''
+sample_article = '''
 For the past few years, the US economy has been growing at a pace that seemed too good to be true.
 
 So, at first glance, Thursday’s gross domestic product report showing the US economy grew at an annualized rate of 1.6% in the first quarter of this year versus the 3.4% rate in the fourth quarter of last year seems to be just the medicine the Federal Reserve doctors ordered. But there’s just one problem: inflation.
@@ -70,32 +38,37 @@ But the growing consensus among economists and investment strategists is that th
 
 “While the Goldilocks narrative has prevailed so far this year, in more ways than one it’s as if she tripped over today’s GDP report and scraped her knee,” wrote Mike Reynolds, vice president of investment strategy at Glenmede, in a note Thursday.'''
 
+sample_topic = 'current GDP readings'
 
-instruction_1 = f'I read these articles, what are the main topics discussed in them?'
-instruction_2a = 'Which of the following articles should I read to understand more about current GDP readings'
-instruction_2b = f'Please list the top 3 articles related to the following text {user_article_text}'
-instruction_3 = f'I read these articles, how would you tag the main topics discussed in each of them? Provide a few tags for each article.'
-# 4 - how many articles do we have that relate to xxx topic - squash #3 response down into a table -i.e. Economy:6, US: 4, etc....
+@app.route('/hello', methods=['POST'])
+def hello():
+    data = {'message': 'hello wrold'}
+    return Response(json.dumps(data), mimetype='application/json')
 
-input_string = f'{instruction}: {article_texts}'
+@app.route('/summary', methods=['POST'])
+def summary():
+    data = ai.summarize_article(sample_article)
+    return Response(json.dumps(data), mimetype='application/json')
 
-# perform the API call
-chat_completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {
-            "role": "user",
-            "content": input_string
-        }
-    ]
-)
+@app.route('/recommendations_article', methods=['POST'])
+def recommendations_article():
+    data = ai.recommendations_from_article(sample_article)
+    return Response(json.dumps(data), mimetype='application/json')
 
-# print out input and response
-# returns chat_completion.choices[0].message.content, this is the response from OpenAI API call
-print('*************************')
-print('*************************')
-# print(f'Input: {input_string}')
-# print('*************************')
-print(f'Response: {chat_completion.choices[0].message.content}')
-print('*************************')
-print('*************************')
+@app.route('/recommendations_topic', methods=['POST'])
+def recommendations_topic():
+    data = ai.recommendations_from_topic(sample_topic)
+    return Response(json.dumps(data), mimetype='application/json')
+
+@app.route('/topics', methods=['POST'])
+def topics():
+    data = ai.topics_from_article(sample_article)
+    return Response(json.dumps(data), mimetype='application/json')
+
+if __name__ == '__main__':
+    app.run()
+
+
+
+# python -m venv ~/Documents/hackathon-venv
+# source ~/Documents/hackathon-venv/Scripts/activate
