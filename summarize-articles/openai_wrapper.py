@@ -70,7 +70,7 @@ class OpenAIWrapper:
         return self.openai_call(sys_msg, instruction)
     
     def topics_rollup(self, article_texts):
-        sys_msg = "Please provide responses as a JSON object with the following format: {'content': {'tag 1': ['title of 1st article with tag 1', 'title of 2nd article with tag 1', ...], 'tag 2': ['title of 1st article with tag 2', 'title of 2nd article with tag 2', ...], ...}"
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': [{'tag':'tag 1', 'articles': ['title of 1st article with tag 1', 'title of 2nd article with tag 1', ...]}, {'tag':'tag 2', 'articles': ['title of 1st article with tag 2', 'title of 2nd article with tag 2', ...]}, ...]"
         instruction = f'I read these articles, how would you tag the main topics discussed in them? Group the results by tag. {article_texts}'
         return self.openai_call(sys_msg, instruction)
     
