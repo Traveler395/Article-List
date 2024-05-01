@@ -68,3 +68,18 @@ class OpenAIWrapper:
         sys_msg = "Please provide responses as a JSON object with the following format: {'content': ['tag 1', 'tag 2', ...]}"
         instruction = f'I read this article, how would you tag the main topics discussed in it? Provide a few tags. {article_text}'
         return self.openai_call(sys_msg, instruction)
+    
+    def topics_rollup(self, article_texts):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': {'tag 1': ['title of 1st article with tag 1', 'title of 2nd article with tag 1', ...], 'tag 2': ['title of 1st article with tag 2', 'title of 2nd article with tag 2', ...], ...}"
+        instruction = f'I read these articles, how would you tag the main topics discussed in them? Group the results by tag. {article_texts}'
+        return self.openai_call(sys_msg, instruction)
+    
+    def summary_rollup(self, article_texts):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': [{'title': 'article 1 title', 'summary': 'article 1 summary'}, {'title': 'article 2 title', 'summary': 'article 2 summary'}, ...]}"
+        instruction = f'I read these articles, what are the main topics discussed in them? {article_texts}'
+        return self.openai_call(sys_msg, instruction)
+    
+    def recommendations_rollup(self, article_titles):
+        sys_msg = "Please provide responses as a JSON object with the following format: {'content': {'title': 'recommended article title', 'url': 'recommended article url'} }"
+        instruction = f'I read these articles: {article_titles}. Out of the remaining articles in the library, which one is most similar? Article library: {self.article_library}'
+        return self.openai_call(sys_msg, instruction)

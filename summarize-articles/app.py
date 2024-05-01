@@ -2,6 +2,7 @@ from flask import Flask, Response
 from flask_cors import CORS
 import json
 import openai_wrapper
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -42,10 +43,39 @@ But the growing consensus among economists and investment strategists is that th
 
 sample_topic = 'current GDP readings'
 
+#set current dir to this script's dir
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
+#collect first four articles for "input" data
+sample_rollup = []
+with open('../Articles/Affluent Americals driving US Economy.txt', 'r', encoding='UTF-8') as f:
+    content = f.read()
+    sample_rollup.append(content)
+with open('../Articles/GDP Growth Slowed to 1.6%.txt', 'r', encoding='UTF-8') as f:
+    content = f.read()
+    sample_rollup.append(content)
+with open('../Articles/Global Debt hasn\'t been this bad since Napoleon.txt', 'r', encoding='UTF-8') as f:
+    content = f.read()
+    sample_rollup.append(content)
+with open('../Articles/Key Fed Inflation Measure Rose.txt', 'r', encoding='UTF-8') as f:
+    content = f.read()
+    sample_rollup.append(content)
+
+sample_rollup_titles = [
+    'Affluent Americans are driving US economy and likely delaying need for Fed rate cuts',
+    'GDP growth slowed to a 1.6% rate in the first quarter, well below expectations',
+    'Global debt hasn’t been this bad since the Napoleonic Wars, says World Economic Forum president',
+    'Key Fed inflation measure rose 2.8% in March from a year ago, more than expected'
+]
+
+
 @app.route('/hello', methods=['POST'])
 def hello():
     data = {'message': 'hello wrold'}
     return Response(json.dumps(data), mimetype='application/json')
+
+#advisor view
 
 @app.route('/summary', methods=['POST'])
 def summary():
@@ -65,6 +95,23 @@ def recommendations_topic():
 @app.route('/topics', methods=['POST'])
 def topics():
     data = ai.topics_from_article(sample_article)
+    return Response(data, mimetype='application/json')
+
+#sales view
+
+@app.route('/topics_rollup', methods=['POST'])
+def topics_rollup():
+    data = ai.topics_rollup(sample_rollup)
+    return Response(data, mimetype='application/json')
+
+@app.route('/summary_rollup', methods=['POST'])
+def summary_rollup():
+    data = ai.summary_rollup(sample_rollup)
+    return Response(data, mimetype='application/json')
+
+@app.route('/next_best_action', methods=['POST'])
+def next_best_action():
+    data = ai.recommendations_rollup(sample_rollup_titles)
     return Response(data, mimetype='application/json')
 
 if __name__ == '__main__':
